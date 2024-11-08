@@ -1,13 +1,4 @@
-verticalPos = {
-    'a': 7,
-    'b': 6,
-    'c': 5,
-    'd': 4,
-    'e': 3,
-    'f': 2,
-    'g': 1,
-    'h': 0,
-}
+import Position
 
 
 class Board:
@@ -26,7 +17,8 @@ class Board:
         ]
 
     def get(self, position):
-        return self.board[verticalPos.get(position[0])][int(position[1])-1]
+        x, y = Position.pos_to_num(position)
+        return self.board[x][y]
 
     def move(self, move: str):
         # increase turn counter
@@ -93,4 +85,4 @@ if __name__ == '__main__':
     board = Board()
     print(board)
 
-    print(board.get("a1"))
+    print(board.get("d1"))
