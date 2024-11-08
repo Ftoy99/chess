@@ -1,3 +1,15 @@
+verticalPos = {
+    'a': 7,
+    'b': 6,
+    'c': 5,
+    'd': 4,
+    'e': 3,
+    'f': 2,
+    'g': 1,
+    'h': 0,
+}
+
+
 class Board:
     def __init__(self):
         self.turn = 1
@@ -13,9 +25,13 @@ class Board:
             ["R", "N", "B", "Q", "K", "B", "N", "R"],  # 8
         ]
 
+    def get(self, position):
+        return self.board[verticalPos.get(position[0])][int(position[1])-1]
+
     def move(self, move: str):
         # increase turn counter
         self.turn += 1
+        # TODO capture bcc3 maybe lower case letter
         if len(move) == 2:
             self.move_pawn(move)
         if move.startswith("N"):
@@ -47,7 +63,9 @@ class Board:
         return boardStr
 
     def move_pawn(self, move):
-        pass
+        # e4
+        if self.isWhiteTurn():
+            pass
 
     def move_knight(self, move):
         pass
@@ -74,3 +92,5 @@ class Board:
 if __name__ == '__main__':
     board = Board()
     print(board)
+
+    print(board.get("a1"))
